@@ -15,8 +15,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>19</maven.compiler.source>
-        <maven.compiler.target>19</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
         <aspectj.version>1.9.1</aspectj.version>
     </properties>
 
@@ -36,8 +36,7 @@
             <groupId>com.hitorro</groupId>
             <artifactId>hitorro-text-core</artifactId>
             <version>3.0.0</version>
-            <scope>provided</scope>
-            <!-- Mark as provided since hitorro-text-core is a separate project -->
+            <!-- Changed from 'provided' to default 'compile' scope so classes are available at runtime -->
         </dependency>
 
         <!-- Database and persistence -->
@@ -45,8 +44,7 @@
             <groupId>com.hitorro</groupId>
             <artifactId>hitorro-basedms</artifactId>
             <version>3.0.0</version>
-            <scope>provided</scope>
-            <!-- Mark as provided since hitorro-basedms is now a separate standalone project -->
+            <!-- Changed from 'provided' to default 'compile' scope so classes are available at runtime -->
         </dependency>
 
         <!-- Object retrieval (Solr integration) -->
@@ -54,8 +52,7 @@
             <groupId>com.hitorro</groupId>
             <artifactId>hitorro-objretrieval</artifactId>
             <version>3.0.0</version>
-            <scope>provided</scope>
-            <!-- Mark as provided since hitorro-objretrieval is a separate project -->
+            <!-- Changed from 'provided' to default 'compile' scope so classes are available at runtime -->
         </dependency>
 
         <!-- Apache Commons IO -->
@@ -85,8 +82,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
-                    <source>19</source>
-                    <target>19</target>
+                    <source>21</source>
+                    <target>21</target>
                 </configuration>
             </plugin>
 
