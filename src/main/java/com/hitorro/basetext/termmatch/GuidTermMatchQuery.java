@@ -32,7 +32,6 @@ import com.hitorro.util.typesystem.HTSerializable;
 import java.io.IOException;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Jan 17, 2005 Time: 9:47:22 AM
  */
 public class GuidTermMatchQuery extends TermMatchQuery {
     private String title;

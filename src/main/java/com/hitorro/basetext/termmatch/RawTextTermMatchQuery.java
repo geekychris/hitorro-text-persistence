@@ -28,7 +28,6 @@ import com.hitorro.util.core.Log;
 import java.io.IOException;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Jan 17, 2005 Time: 9:52:46 AM
  */
 public class RawTextTermMatchQuery extends TermMatchQuery {
     public RawTextTermMatchQuery() {

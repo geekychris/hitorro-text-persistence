@@ -35,7 +35,6 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Nov 13, 2006 Time: 5:45:36 PM
  */
 public class SearcherCache extends BaseMapper<String, IndexSearcher> {
     public static final String IndexChangeEvent = "IndexChangedEvent";

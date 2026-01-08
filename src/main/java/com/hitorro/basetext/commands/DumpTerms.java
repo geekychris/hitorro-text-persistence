@@ -33,7 +33,6 @@ import com.hitorro.util.commandandcontrol.ano.ResponseDefinition;
 import com.hitorro.util.json.keys.StringProperty;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Nov 14, 2006 Time: 12:35:26 AM
  */
 //TODO UPDATE
 @CommandDef(command = "text.dumpterms", description = "Search a lucene index")

@@ -33,7 +33,6 @@ import com.hitorro.util.json.keys.StringProperty;
 import java.io.IOException;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Jan 17, 2005 Time: 12:57:32 PM
  */
 @CommandDef(command = "text.luceneindexoptimize", description = "Optimize a lucene index")
 public class IndexOptimizer extends Command {

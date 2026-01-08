@@ -22,7 +22,6 @@
 package com.hitorro.basetext.termmatch;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Jan 16, 2005 Time: 12:04:43 PM
  */
 public class TFIDFRanker extends Ranker {
     /* public RankResults rank (List<RankerQuery> querySet)

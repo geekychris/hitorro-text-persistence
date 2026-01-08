@@ -79,7 +79,6 @@ import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Jan 10, 2005 Time: 11:33:44 AM
  * <p/>
  * Textual analysis services.
  */

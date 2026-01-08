@@ -26,7 +26,6 @@ import com.hitorro.basetext.indexer.FullTextIndex;
 import com.hitorro.util.core.map.MapUtil;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Nov 10, 2006 Time: 2:19:03 PM
  * <p/>
  * Load the definition of an index into the system.
  */

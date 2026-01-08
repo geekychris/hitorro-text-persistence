@@ -29,7 +29,6 @@ import com.hitorro.util.html.HTMLParser;
 import java.io.IOException;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Jan 17, 2005 Time: 10:35:16 AM
  */
 public class HTMLSourceTermMatchQuery extends TermMatchQuery {
     public HTMLSourceTermMatchQuery() {

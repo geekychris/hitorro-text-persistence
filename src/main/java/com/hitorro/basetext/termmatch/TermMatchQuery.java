@@ -28,7 +28,6 @@ import com.hitorro.basetext.inverter.TermTupleSetGroup;
 import org.apache.lucene.search.BooleanQuery;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Jan 17, 2005 Time: 9:09:24 AM
  */
 public abstract class TermMatchQuery {
     protected MatchType m_matchType = MatchType.TFIDF;

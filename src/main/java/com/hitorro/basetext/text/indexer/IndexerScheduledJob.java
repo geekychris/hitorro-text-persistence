@@ -36,7 +36,6 @@ import java.io.IOException;
 import java.util.Date;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Feb 1, 2005 Time: 5:13:46 PM
  * <p/>
  * Scheduled Job to see if there are items to index.
  */

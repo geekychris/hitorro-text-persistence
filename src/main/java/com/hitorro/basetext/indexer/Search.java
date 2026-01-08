@@ -38,7 +38,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Nov 28, 2006 Time: 11:04:03 AM
  */
 public class Search {
 

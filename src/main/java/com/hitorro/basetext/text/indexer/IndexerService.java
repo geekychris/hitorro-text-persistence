@@ -32,7 +32,6 @@ import com.hitorro.basetext.commands.IndexQueueProcessCommand;
 import com.hitorro.util.startupframework.phases.ServiceDefinition;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Nov 10, 2006 Time: 1:02:52 PM
  */
 @ServiceDefinition(dependentService = {SchedulerService.class, RichDMSService.class,
         IndexerService.class, TextService.class},

@@ -25,7 +25,6 @@ import com.hitorro.basetext.inverter.InverterUtils;
 import com.hitorro.basetext.inverter.TermTupleSetGroup;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Jan 17, 2005 Time: 10:35:44 AM
  */
 public class UrlTermMatchQuery extends TermMatchQuery {
     public UrlTermMatchQuery() {

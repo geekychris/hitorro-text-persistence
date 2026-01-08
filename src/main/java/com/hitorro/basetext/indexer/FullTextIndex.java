@@ -37,7 +37,6 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Nov 10, 2006 Time: 2:10:58 PM
  */
 
 @TypeClassMetaInfo(shortTypeName = TypeClassMetaInfo.Index,

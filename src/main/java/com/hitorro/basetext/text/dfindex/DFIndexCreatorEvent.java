@@ -45,7 +45,6 @@ import java.util.Iterator;
 
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Jan 10, 2005 Time: 7:25:53 PM
  */
 public class DFIndexCreatorEvent implements EventListener {
     private static final String Q2 = "select post.title, cc.guid from Post post join post.contents cc where cc.id in " +

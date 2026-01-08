@@ -50,7 +50,6 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Oct 17, 2006 Time: 6:02:47 PM
  * <p/>
  * The document indexer knows nothing of the source of documents, merely that it is going to get called n times to index
  * n documents.  Once a sufficient amount of documents have been provided for indexing, the writer will be closed and

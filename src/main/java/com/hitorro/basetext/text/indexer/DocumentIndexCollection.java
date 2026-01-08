@@ -31,7 +31,6 @@ import java.util.Date;
 import java.util.Iterator;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Nov 10, 2006 Time: 12:42:48 PM
  */
 public class DocumentIndexCollection {
     private BaseSession m_session;

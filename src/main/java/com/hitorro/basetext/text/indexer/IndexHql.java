@@ -34,7 +34,6 @@ import com.hitorro.util.typesystem.BaseSession;
 import java.io.IOException;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Nov 10, 2006 Time: 12:59:59 PM
  * <p/>
  * Debug mechanism to take a set of objects and
  */

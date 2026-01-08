@@ -22,7 +22,6 @@
 package com.hitorro.basetext.termmatch;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Jan 17, 2005 Time: 11:45:33 AM
  */
 public class RankerResultRow {
     private String m_guid;

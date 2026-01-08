@@ -47,7 +47,6 @@ import org.apache.lucene.search.TopDocs;
 import java.io.IOException;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved. User: chris Date: Nov 13, 2006 Time: 6:29:56 PM
  */
 @CommandDef(command = "text.searchluceneindex", description = "Search a lucene index")
 public class SearchCommand extends Command {
