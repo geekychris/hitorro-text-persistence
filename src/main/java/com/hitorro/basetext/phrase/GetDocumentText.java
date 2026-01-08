@@ -29,10 +29,6 @@ import org.hibernate.type.Type;
 import java.util.Iterator;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved.
- * <p/>
- * User: chris
- * <p/>
  * Given a query result that is a set of guids, try to retrieve each object and render the "text"
  */
 public class GetDocumentText implements HibernateQueryResultObjectAdapter<String> {

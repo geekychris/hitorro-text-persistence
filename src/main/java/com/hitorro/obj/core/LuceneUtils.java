@@ -43,11 +43,7 @@ import org.apache.lucene.util.Version;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * Copyright (c) 2003 - present HiTorro All rights reserved.
- * <p/>
- * User: chris
- */
+
 public class LuceneUtils {
     public static final Version CurrentVersion = Version.LUCENE_9_9_2;
 

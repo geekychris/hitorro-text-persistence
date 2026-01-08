@@ -60,10 +60,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Copyright (c) 2003 - present HiTorro All rights reserved.
- * <p/>
- * User: chris
- * <p/>
+
  * some notes about filters: http://www.javaranch.com/journal/2009/02/filtering-a-lucene-search.html
  */
 public class IndexerUtil {

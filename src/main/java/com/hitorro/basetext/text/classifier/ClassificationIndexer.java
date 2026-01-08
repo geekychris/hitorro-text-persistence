@@ -30,11 +30,7 @@ import com.hitorro.util.typesystem.BaseSession;
 import java.io.IOException;
 import java.util.Date;
 
-/**
- * Copyright (c) 2003 - present HiTorro All rights reserved.
- * <p/>
- * User: chris
- */
+
 public class ClassificationIndexer {
 
     public void index() {

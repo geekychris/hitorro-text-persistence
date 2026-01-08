@@ -27,11 +27,7 @@ import com.hitorro.util.job.JobExecutionResult;
 import com.hitorro.util.job.JobParameters;
 import org.apache.log4j.Level;
 
-/**
- * Copyright (c) 2003 - present HiTorro All rights reserved.
- * <p/>
- * User: chris
- */
+
 public class PhraseListJob extends Job {
     public static final String Name = "PhraseListJob";
 
