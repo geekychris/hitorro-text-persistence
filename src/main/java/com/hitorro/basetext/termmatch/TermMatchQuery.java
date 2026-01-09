@@ -30,29 +30,29 @@ import org.apache.lucene.search.BooleanQuery;
 /**
  */
 public abstract class TermMatchQuery {
-    protected MatchType m_matchType = MatchType.TFIDF;
+    protected MatchType matchType = MatchType.TFIDF;
     protected MatchSourceType m_type;
     protected String m_query;
     protected String m_id;
-    protected BooleanQuery m_masterQuery;
-    private DocumentInverter m_docInverter = null;
+    protected BooleanQuery masterQuery;
+    private DocumentInverter docInverter = null;
 
     public abstract TermTupleSetGroup getTupleSet();
 
     public BooleanQuery getMasterQuery() {
-        return m_masterQuery;
+        return masterQuery;
     }
 
     public void setMasterQuery(BooleanQuery master) {
-        m_masterQuery = master;
+        masterQuery = master;
     }
 
     public MatchType getMatchType() {
-        return m_matchType;
+        return matchType;
     }
 
     protected void setMatchType(MatchType type) {
-        m_matchType = type;
+        matchType = type;
     }
 
     public String getId() {
@@ -85,17 +85,17 @@ public abstract class TermMatchQuery {
     }
 
     protected DocumentInverter getDocumentInverter() {
-        if (m_docInverter == null) {
-            switch (this.m_matchType) {
+        if (docInverter == null) {
+            switch (this.matchType) {
                 case TFIDF:
-                    m_docInverter = new DocumentInverter("body", null, new TFIDFTermMeasureFunction(), TermTupleSet.s_MeasureDescendComparitor);
+                    docInverter = new DocumentInverter("body", null, new TFIDFTermMeasureFunction(), TermTupleSet.s_MeasureDescendComparitor);
                     break;
                 default:
                     // XXX to fix, implement BM25
-                    m_docInverter = new DocumentInverter("body", null, new TFIDFTermMeasureFunction(), TermTupleSet.s_MeasureDescendComparitor);
+                    docInverter = new DocumentInverter("body", null, new TFIDFTermMeasureFunction(), TermTupleSet.s_MeasureDescendComparitor);
             }
         }
-        return m_docInverter;
+        return docInverter;
     }
 
     public enum MatchSourceType {

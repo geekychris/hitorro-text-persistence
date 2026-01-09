@@ -95,7 +95,7 @@ public class TextService {
     SolrService solrService;
     @Dependency(clazz = com.hitorro.obj.core.BasetextService.class)
 	BasetextService basetext;
-    private DFIndexCreatorEvent m_indexCreatorEvent = new DFIndexCreatorEvent();
+    private DFIndexCreatorEvent indexCreatorEvent = new DFIndexCreatorEvent();
 
     @CommandDef(command = "w", description = "w")
     public static RedirectHttp w(@DebugArgAno(keyName = "",
@@ -416,7 +416,7 @@ public class TextService {
         JobService.getService().registerAppJob(PhraseListJob.class, "Generate a phrase listFiles from crawling the dms", PhraseListJobParameters.class);
         JobService.getService().registerAppJob(PhraseIndexJob.class, "Generate a phrase index from a phrase listFiles", PhraseIndexJobParameters.class);
         */
-        LocalEventHub.get().addEventListener(m_indexCreatorEvent, m_indexCreatorEvent.eventName());
+        LocalEventHub.get().addEventListener(indexCreatorEvent, indexCreatorEvent.eventName());
         return null;
     }
 

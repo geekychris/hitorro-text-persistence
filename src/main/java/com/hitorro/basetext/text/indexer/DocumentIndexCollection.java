@@ -35,12 +35,12 @@ import java.util.Iterator;
 public class DocumentIndexCollection {
     private BaseSession m_session;
     private String m_query;
-    private int m_indexCount;
+    private int indexCount;
     private File m_indexDirectory;
     private DocumentIndexer m_indexer;
     private boolean m_reInit;
 
-    private Object m_queryArgs[];
+    private Object queryArgs[];
 
     public DocumentIndexCollection(String name) {
         m_indexer = new DocumentIndexer(name);
@@ -56,7 +56,7 @@ public class DocumentIndexCollection {
     public boolean init(BaseSession session, String query, Object args[], boolean reInit) {
         m_session = session;
         m_query = query;
-        m_queryArgs = args;
+        queryArgs = args;
 
         m_reInit = reInit;
 
@@ -76,8 +76,8 @@ public class DocumentIndexCollection {
         try {
             Iterator<String> iter = null;
             Query query = ((DMSSession) m_session).createQuery(m_query);
-            if (m_queryArgs != null && m_queryArgs.length > 0) {
-                iter = m_session.getIteratorFromQueryArgs(m_query, m_queryArgs);
+            if (queryArgs != null && queryArgs.length > 0) {
+                iter = m_session.getIteratorFromQueryArgs(m_query, queryArgs);
             } else {
                 iter = ((Query) m_session.createQuery(m_query)).stream().iterator();
             }
@@ -94,7 +94,7 @@ public class DocumentIndexCollection {
                     m_indexer.init(false);
                     i = 0;
                 }
-                m_indexCount++;
+                indexCount++;
             }
             // dont flushToDisk out new marker if it didnt succeed!
             this.m_indexer.setLastIndexTimeAsNow();
@@ -102,7 +102,7 @@ public class DocumentIndexCollection {
 
             close();
         }
-        return m_indexCount;
+        return indexCount;
     }
 
     private void closeForReopen() throws IOException {

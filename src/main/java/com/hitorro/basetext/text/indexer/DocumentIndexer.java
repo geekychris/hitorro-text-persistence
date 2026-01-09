@@ -72,7 +72,7 @@ public class DocumentIndexer<E extends com.hitorro.util.typesystem.BaseType> imp
     public static final FileProperty DirectoryKey = new FileProperty("dir", "name of the index", "");
     private static final String OptimizeKey = "optimize.txt";
     private static int counter = 0;
-    private File m_indexDir = null;
+    private File indexDir = null;
     private IndexWriter m_writer = null;
     //private GenericAnalyzer m_defaultAnalyzer = new GenericAnalyzer(FilterBits.DefaultFilters);
     private long m_indexVersion;
@@ -86,7 +86,7 @@ public class DocumentIndexer<E extends com.hitorro.util.typesystem.BaseType> imp
     private com.hitorro.util.typesystem.TypeManager manager;
     // how many guids to construct into a delete query at a time.  The more we have, the fewer queries
     // we perform in general reducing general overhead.
-    private int m_guidDeleteChunkingSize = 10;
+    private int guidDeleteChunkingSize = 10;
 
     public DocumentIndexer() {
 
@@ -152,8 +152,8 @@ public class DocumentIndexer<E extends com.hitorro.util.typesystem.BaseType> imp
 
     private boolean initDir(File directory, String name) {
 
-        m_indexDir = directory;
-        m_lastIndexTimeFile = new File(m_indexDir, Fmt.S("index-date-%s", name));
+        indexDir = directory;
+        m_lastIndexTimeFile = new File(indexDir, Fmt.S("index-date-%s", name));
         m_name = name;
         return true;
     }
@@ -164,7 +164,7 @@ public class DocumentIndexer<E extends com.hitorro.util.typesystem.BaseType> imp
         }
         m_indexVersion = GuidBaseType.BaseTypeIdNamedLong.getNextValue();
         PerFieldAnalyzerWrapper analyzer = new PerFieldAnalyzerWrapper(new StandardAnalyzer());
-        m_writer = IndexerUtil.constructWriter(m_indexDir, reInit, analyzer, true);
+        m_writer = IndexerUtil.constructWriter(indexDir, reInit, analyzer, true);
         m_guids.clear();
         manager = com.hitorro.util.typesystem.TypeManager.getTypeManager();
 
@@ -239,22 +239,22 @@ public class DocumentIndexer<E extends com.hitorro.util.typesystem.BaseType> imp
     }
 
     public void deleteOld() throws IOException {
-        IndexerUtil.deleteOld(m_guids, m_guidDeleteChunkingSize, "indexversion", m_name, m_indexVersion);
+        IndexerUtil.deleteOld(m_guids, guidDeleteChunkingSize, "indexversion", m_name, m_indexVersion);
     }
 
     private boolean mustOptimize() {
-        File f = new File(m_indexDir, OptimizeKey);
+        File f = new File(indexDir, OptimizeKey);
         return f.exists();
     }
 
     public void removeOptimizeMarker() {
-        File f = new File(m_indexDir, OptimizeKey);
+        File f = new File(indexDir, OptimizeKey);
         f.delete();
     }
 
 
     public void markForOptimize() {
-        File f = new File(m_indexDir, OptimizeKey);
+        File f = new File(indexDir, OptimizeKey);
         try {
             FileUtil.writeLongValToFile(f, System.currentTimeMillis());
         } catch (IOException e) {
