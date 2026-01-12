@@ -33,12 +33,14 @@ import com.hitorro.util.typesystem.OnTrigger;
 import com.hitorro.util.typesystem.annotation.ImplClassMeta;
 import com.hitorro.util.typesystem.annotation.TypeClassMetaInfo;
 
+import jakarta.persistence.*;
 import java.io.File;
 import java.io.IOException;
 
 /**
  */
-
+@Entity
+@Table(name = "FullTextIndex")
 @TypeClassMetaInfo(shortTypeName = TypeClassMetaInfo.Index,
         isView = false,
         isPersisted = true,
@@ -53,10 +55,17 @@ import java.io.IOException;
 
 public class FullTextIndex extends GuidBaseType {
     public static final int SerializationVersion = 1;
-    private String m_name;
-    private String m_store;
-    private String m_rootPath;
-    //transient field
+    
+    @Column(name = "name")
+    private String name;
+    
+    @Column(name = "store")
+    private String store;
+    
+    @Column(name = "rootPath")
+    private String rootPath;
+    
+    @Transient
     private File m_rootDir;
 
     public FullTextIndex() {
@@ -73,9 +82,9 @@ public class FullTextIndex extends GuidBaseType {
             throws IOException, StoreException {
         os.writeInt(getSerializationVersion());
         super.serialize(os);
-        os.writeString(m_name);
-        os.writeString(m_store);
-        os.writeString(m_rootPath);
+        os.writeString(name);
+        os.writeString(store);
+        os.writeString(rootPath);
     }
 
     public void deserialize(HTObjectInputStream os)
@@ -85,29 +94,29 @@ public class FullTextIndex extends GuidBaseType {
 
         switch (version) {
             case 1:
-                m_name = os.readString();
-                m_store = os.readString();
-                m_rootPath = os.readString();
+                name = os.readString();
+                store = os.readString();
+                rootPath = os.readString();
         }
     }
 
     public void init() {
         if (m_rootDir == null) {
-            String val = JVSProperties.getProperties().resolveJsonVariable(m_rootPath);
+            String val = JVSProperties.getProperties().resolveJsonVariable(rootPath);
             m_rootDir = new File(val);
             if (!FileUtil.ensureParentDirectories(m_rootDir, true)) {
                 com.hitorro.basedms.Log.basedms.error("Unable to create root path for file system %s, path %s",
-                        m_name, val);
+                        name, val);
             }
         }
     }
 
     public String getName() {
-        return m_name;
+        return name;
     }
 
     public void setName(String name) {
-        m_name = name;
+        this.name = name;
     }
 
     public File getRootDir() {
@@ -116,19 +125,19 @@ public class FullTextIndex extends GuidBaseType {
     }
 
     public String getStore() {
-        return m_store;
+        return store;
     }
 
     public void setStore(String store) {
-        m_store = store;
+        this.store = store;
     }
 
     public String getRootPath() {
-        return m_rootPath;
+        return rootPath;
     }
 
-    public void setRootPath(String root) {
-        m_rootPath = root;
+    public void setRootPath(String rootPath) {
+        this.rootPath = rootPath;
     }
 
     public int getSerializationVersion() {
