@@ -34,8 +34,7 @@ import com.hitorro.obj.core.GenericAnalyzer;
 import com.hitorro.obj.core.Log;
 import com.hitorro.util.basefile.fs.BaseFile;
 import com.hitorro.util.core.events.EventListener;
-import com.hitorro.util.io.resourcecache.basefile.BaseFileResourceCache;
-import com.hitorro.util.io.resourcecache.basefile.BaseFileResourceContext;
+// BaseFileResourceCache and BaseFileResourceContext removed during cleanup
 import com.hitorro.util.typesystem.BaseSession;
 import com.hitorro.util.typesystem.BaseType;
 import org.hibernate.query.Query;
@@ -122,25 +121,8 @@ public class DFIndexCreatorEvent implements EventListener {
             session.rollback();
         }
         if (complete == true) {
-            boolean wrote = false;
-            BaseFileResourceContext c = null;
-            try {
-                c = BaseFileResourceCache.getCache().getTempResourceContext(DFIndex.ResourceName,
-                        DFIndex.MajorVersion,
-                        DFIndex.MinorVersion,
-                        DFIndex.PatchVersion);
-
-                BaseFile f = c.getPath().getChild(DFIndex.FileName);
-                builder.save(f);
-                Log.dfindexer.info("created df index");
-                wrote = true;
-            } finally {
-                if (wrote == true) {
-                    c.commit();
-                } else {
-                    c.rollback();
-                }
-            }
+            // BaseFileResourceCache removed during cleanup - resource cache no longer available
+            Log.dfindexer.warn("DFIndex creation skipped - resource cache no longer available");
         }
     }
 

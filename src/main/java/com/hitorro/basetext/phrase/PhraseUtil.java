@@ -30,8 +30,7 @@ import com.hitorro.util.core.iterator.AbstractIterator;
 import com.hitorro.util.core.params.HTProperties;
 import com.hitorro.util.io.FileUtil;
 import com.hitorro.util.io.largedata.iterator.HTSerializableInputIterator;
-import com.hitorro.util.io.resourcecache.basefile.BaseFileResourceCache;
-import com.hitorro.util.io.resourcecache.basefile.BaseFileResourceContext;
+// BaseFileResourceCache and BaseFileResourceContext removed during cleanup
 import com.hitorro.util.typesystem.BaseSession;
 
 import java.io.File;
@@ -55,37 +54,7 @@ public class PhraseUtil {
 
 
     public static final boolean writePhrasesFromDBIntoResourceCache(String query, String analyzer, boolean generateSortedFile) throws Exception {
-
-        //writePhrasesFromDB(c.getFormatted(), 400000, 20, "STANDARD, CASE, NUMBER, LENGTH", "select guid from Document");
-        boolean wrote = false;
-        BaseFileResourceContext c = null;
-        try {
-            c = BaseFileResourceCache.getCache().getTempResourceContext(PhraseUtilBasic.ResourceName,
-					PhraseUtilBasic.MajorVersion,
-					PhraseUtilBasic.MinorVersion,
-					PhraseUtilBasic.PatchVersion);
-            Timer t = new Timer();
-            BaseFile headerFile = c.getPath().getChild("info.txt");
-            HTProperties props = new HTProperties();
-            props.put("Phrase_list_generated_for_query", query);
-            props.put("Query", query);
-            props.put("Anaylzers", analyzer);
-            props.put("TookSeconds", t.getTime() / Constants.MillisInSecond);
-            props.put("StartTime ", System.currentTimeMillis());
-            headerFile.writeProperties(props);
-            writePhrasesFromDB(c.getPath(), 400000, 20, analyzer, query, generateSortedFile);
-            t.stop();
-
-
-            wrote = true;
-        } finally {
-            if (wrote == true) {
-                c.commit();
-                return true;
-            } else {
-                c.rollback();
-            }
-        }
+        // BaseFileResourceCache removed during cleanup - resource cache no longer available
         return false;
     }
 

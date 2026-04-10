@@ -22,7 +22,7 @@
 package com.hitorro.basetext.text.indexer;
 
 import com.hitorro.basedms.session.DMSSessionFactory;
-import com.hitorro.jsontypesystem.JVS;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.hitorro.util.commandandcontrol.Command;
 import com.hitorro.util.commandandcontrol.CommandSession;
 import com.hitorro.util.commandandcontrol.Response;
@@ -44,7 +44,7 @@ public class IndexHql extends Command {
     @CommandArgument(required = true)
     private StringProperty IndexName = new StringProperty("indexname", "index directory", null);
 
-    public boolean execute(String rawValue, JVS args, Response response, CommandSession session) {
+    public boolean execute(String rawValue, JsonNode args, Response response, CommandSession session) {
         String hql = Hql.apply(args);
         String name = IndexName.apply(args);
         BaseSession sess = DMSSessionFactory.getFactory().getSession();

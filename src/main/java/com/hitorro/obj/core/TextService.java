@@ -396,7 +396,7 @@ public class TextService {
         System.out.println("Connected to Redis");
 
         //JVS retJvs = sync.execute(jvs);
-        sync.executeAsync(jvs);
+        sync.executeAsync(jvs.getJsonNode());
         //redisClient.shutdown();
         return "";
         //return retJvs.get("res").textValue();

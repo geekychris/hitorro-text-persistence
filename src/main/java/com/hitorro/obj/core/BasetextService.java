@@ -454,7 +454,7 @@ public class BasetextService {
         BaseFile f = Env.getBaseFile(new File("/Users/chris/pics"));
         try {
             AbstractIterator<FileInfo> t = f.list().map(FileInfoMapper.me);
-            t.map(FileInfo::getJVS).sink(sink);
+            t.map(fi -> new com.hitorro.jsontypesystem.JVS(fi.getAsJsonNode())).sink(sink);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -528,10 +528,10 @@ public class BasetextService {
             @DebugArgAno(keyName = "out",
                     argType = ArgType.JVSResponseSink) Sink<com.hitorro.jsontypesystem.JVS> sink) throws Exception {
         com.hitorro.jsontypesystem.JVS query = iter.getFirstItem();
-        String lang = langProp.apply(query);
-        Collection<String> analyzers = analyzersProp.apply(query);
-        String value = textProp.apply(query);
-        boolean asArray = asArrayProp.apply(query);
+        String lang = langProp.apply(query.getJsonNode());
+        Collection<String> analyzers = analyzersProp.apply(query.getJsonNode());
+        String value = textProp.apply(query.getJsonNode());
+        boolean asArray = asArrayProp.apply(query.getJsonNode());
 
 
         ArrayNode an = JsonNodeFactory.instance.arrayNode();

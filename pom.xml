@@ -39,6 +39,11 @@
             <version>3.0.1</version>
             <!-- Changed from 'provided' to default 'compile' scope so classes are available at runtime -->
         </dependency>
+        <dependency>
+            <groupId>com.hitorro</groupId>
+            <artifactId>hitorro-jsontypesystem</artifactId>
+            <version>3.0.1</version>
+        </dependency>
 
         <!-- Database and persistence -->
         <dependency>

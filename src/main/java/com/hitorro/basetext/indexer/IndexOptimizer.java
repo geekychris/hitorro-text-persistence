@@ -22,7 +22,7 @@
 package com.hitorro.basetext.indexer;
 
 import com.hitorro.basetext.text.indexer.DocumentIndexer;
-import com.hitorro.jsontypesystem.JVS;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.hitorro.util.commandandcontrol.Command;
 import com.hitorro.util.commandandcontrol.CommandSession;
 import com.hitorro.util.commandandcontrol.Response;
@@ -39,7 +39,7 @@ public class IndexOptimizer extends Command {
     @CommandArgument(required = true)
     private StringProperty IndexName = new StringProperty("indexname", "index directory", null);
 
-    public boolean execute(String rawValue, JVS args, Response response, CommandSession session) {
+    public boolean execute(String rawValue, JsonNode args, Response response, CommandSession session) {
         String name = IndexName.apply(args);
         DocumentIndexer indexer = new DocumentIndexer(name);
         if (indexer.isValid()) {

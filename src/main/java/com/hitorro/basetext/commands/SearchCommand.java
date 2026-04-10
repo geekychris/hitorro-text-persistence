@@ -24,7 +24,7 @@ package com.hitorro.basetext.commands;
 import com.hitorro.basetext.indexer.AllTypesAnalyzerCache;
 import com.hitorro.basetext.indexer.IndexerFieldAdapter;
 import com.hitorro.basetext.indexer.SearcherCache;
-import com.hitorro.jsontypesystem.JVS;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.hitorro.language.Iso639Table;
 import com.hitorro.util.commandandcontrol.Command;
 import com.hitorro.util.commandandcontrol.CommandSession;
@@ -60,7 +60,7 @@ public class SearchCommand extends Command {
             columns = {@RespColumn(name = "Guid", lName = "guid")})
     private ResponseShape shape = new ResponseShape();
 
-    public boolean execute(String rawValue, JVS args, Response response, CommandSession session) {
+    public boolean execute(String rawValue, JsonNode args, Response response, CommandSession session) {
         String query = QueryString.apply(args);
         String indexName = IndexName.apply(args);
         IndexSearcher s = SearcherCache.getCache().get(indexName);

@@ -23,7 +23,7 @@ package com.hitorro.basetext.commands;
 
 import com.hitorro.base.docprocessing.commands.QueueProcessCommand;
 import com.hitorro.basetext.text.indexer.DocumentIndexer;
-import com.hitorro.jsontypesystem.JVS;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.hitorro.util.commandandcontrol.CommandSession;
 import com.hitorro.util.commandandcontrol.Response;
 import com.hitorro.util.commandandcontrol.ano.CommandArgument;
@@ -47,7 +47,7 @@ public class IndexQueueProcessCommand extends QueueProcessCommand {
     public static final FileProperty indexDirKey = new FileProperty("indexdir", "index directory");
 
     @Override
-    public boolean process(final Iterator<BaseType> iter, final String rawValue, final JVS args, final Response response, final CommandSession session) throws IOException {
+    public boolean process(final Iterator<BaseType> iter, final String rawValue, final JsonNode args, final Response response, final CommandSession session) throws IOException {
         File dir = indexDirKey.apply(args);
         FileUtil.ensureDirectoryExists(dir);
         DocumentIndexer indexer = new DocumentIndexer("index", dir);
