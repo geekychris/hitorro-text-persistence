@@ -69,14 +69,14 @@ public class IndexerUtil {
       Since Documents are merged in a RAMDirectory , large value gives faster indexing. At the same time, mergeFactor limits the number
       of files open in a FSDirectory.
      */
-    public static final IntegerProperty MaxBufferedDocs = new IntegerProperty("indexer.maxbuffereddocs", "", 8000);
+    public static IntegerProperty MaxBufferedDocs = new IntegerProperty("indexer.maxbuffereddocs", "", 8000);
 
     /*
       Determines the largest number of documents ever merged by addDocument(). Small values
       (e.g., less than 10,000) are best for interactive indexing, as this limits the length
       of pauses while indexing to a few seconds. Larger values are best for batched indexing and speedier searches.
      */
-    public static final IntegerProperty MaxMergeDocs = new IntegerProperty("indexer.maxmerge", "", 20000);
+    public static IntegerProperty MaxMergeDocs = new IntegerProperty("indexer.maxmerge", "", 20000);
 
     /*
       Determines how often segment indices are merged by addDocument(). With smaller values, less RAM is used while indexing,
@@ -87,7 +87,7 @@ public class IndexerUtil {
       This must never be less than 2. The default value is 10.
      */
 
-    public static final IntegerProperty MergFactor = new IntegerProperty("indexer.mergefactor", "", 10);
+    public static IntegerProperty MergFactor = new IntegerProperty("indexer.mergefactor", "", 10);
     /*
       The maximum number of terms that will be indexed for a single field in a document.
       This limits the amount of memory required for indexing, so that collections with very
@@ -100,8 +100,8 @@ public class IndexerUtil {
 
       By default, no more than 10,000 terms will be indexed for a field.
      */
-    public static final IntegerProperty MaxFieldLength = new IntegerProperty("indexer.maxfieldsize", "", 1000);
-    public static final com.hitorro.basetext.indexer.IndexerFieldAdapter defaultAdapter = new com.hitorro.basetext.indexer.IndexerFieldAdapter();
+    public static IntegerProperty MaxFieldLength = new IntegerProperty("indexer.maxfieldsize", "", 1000);
+    public static com.hitorro.basetext.indexer.IndexerFieldAdapter defaultAdapter = new com.hitorro.basetext.indexer.IndexerFieldAdapter();
     private static Map<Class, com.hitorro.basetext.indexer.IndexerFieldAdapter> adapters = new HashMap<Class, com.hitorro.basetext.indexer.IndexerFieldAdapter>();
 
     public static SortField getSortField(TypeField tf, boolean reverse) {
@@ -168,7 +168,7 @@ public class IndexerUtil {
         return JsonNodeFactory.instance.textNode(sb.toString());
     }
 
-    public static final void indexFieldFromTypeField(List<IndexableField> addMe,
+    public static void indexFieldFromTypeField(List<IndexableField> addMe,
                                                      TypeFieldIntf f,
                                                      Object valueRaw,
                                                      IsoLanguage language) {
@@ -193,7 +193,7 @@ public class IndexerUtil {
         indexField(stored, indexed, addMe, field, valueRaw, literal, addToDefaultField, isDate, clazz, language, adap);
     }
 
-    public static final IndexSearcher get(File dir) throws IOException {
+    public static IndexSearcher get(File dir) throws IOException {
         Directory d = FSDirectory.open(dir.toPath());
         //TODO Update (Hopefully this is the right mechanism to construct the searcher)
         DirectoryReader ir = DirectoryReader.open(d);
@@ -202,7 +202,7 @@ public class IndexerUtil {
         return is;
     }
 
-    public static final void indexField(boolean stored,
+    public static void indexField(boolean stored,
                                         boolean indexed,
                                         List<IndexableField> addMe,
                                         String field,
@@ -220,7 +220,7 @@ public class IndexerUtil {
         adap.index(isDate, valueRaw, stored, indexed, addMe, field, literal, addToDefaultField, language);
     }
 
-    public static final com.hitorro.basetext.indexer.IndexerFieldAdapter getAdapter(Class clazz) {
+    public static com.hitorro.basetext.indexer.IndexerFieldAdapter getAdapter(Class clazz) {
         com.hitorro.basetext.indexer.IndexerFieldAdapter adap;
         if (clazz != null && clazz != Object.class) {
             adap = adapters.get(clazz);
@@ -237,7 +237,7 @@ public class IndexerUtil {
         return adap;
     }
 
-    public static final IndexWriter constructWriter(File index, boolean reInit, Analyzer analyzer, boolean ignoreLock) throws IOException {
+    public static IndexWriter constructWriter(File index, boolean reInit, Analyzer analyzer, boolean ignoreLock) throws IOException {
         IndexWriter indexer = null;
         // figure out if we need to create the index
         boolean create = shouldCreateIndex(index, reInit);
@@ -285,7 +285,7 @@ public class IndexerUtil {
         return indexer;
     }
 
-    public static final void indexerClose(IndexWriter writer, String name) throws IOException {
+    public static void indexerClose(IndexWriter writer, String name) throws IOException {
         if (writer != null) {
             writer.close();
         }
@@ -293,13 +293,13 @@ public class IndexerUtil {
         IndexerUtil.flushIndexReader(name);
     }
 
-    public static final void flushIndexReader(String name) {
+    public static void flushIndexReader(String name) {
         List l = new ArrayList();
         l.add(name);
         LocalEventHub.get().event(SearcherCache.IndexChangeEvent, Cache.FlushCache, l);
     }
 
-    public static final boolean shouldCreateIndex(File indexDirectory, boolean reInit) {
+    public static boolean shouldCreateIndex(File indexDirectory, boolean reInit) {
         if (reInit == true) {
             return true;
         }
@@ -318,7 +318,7 @@ public class IndexerUtil {
      * @param indexVersion
      * @throws IOException
      */
-    public static final void deleteOld(List<String> ids,
+    public static void deleteOld(List<String> ids,
                                        int chunkingSize,
                                        String field,
                                        String indexName,

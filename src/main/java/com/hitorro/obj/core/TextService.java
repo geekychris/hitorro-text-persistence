@@ -251,7 +251,7 @@ public class TextService {
     }
 
     @CommandDef(command = "xxsolr", description = "x")
-    public static String xxsolr(@DebugArgAno(keyName = "",
+    public static final String xxsolr(@DebugArgAno(keyName = "",
             description = "",
             defaultValue = "",
             argType = ArgType.Raw) String raw,
@@ -370,7 +370,7 @@ public class TextService {
     }
 
     @CommandDef(command = "sap", description = "foo")
-    public static String sap(@DebugArgAno(keyName = "",
+    public static final String sap(@DebugArgAno(keyName = "",
             description = "",
             defaultValue = "",
             argType = ArgType.Raw) String raw,

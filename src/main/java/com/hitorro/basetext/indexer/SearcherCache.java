@@ -46,7 +46,7 @@ public class SearcherCache extends BaseMapper<String, IndexSearcher> {
     public SearcherCache() {
     }
 
-    public static final HashCache<String, IndexSearcher> getCache() {
+    public static HashCache<String, IndexSearcher> getCache() {
         return s_cache;
     }
 

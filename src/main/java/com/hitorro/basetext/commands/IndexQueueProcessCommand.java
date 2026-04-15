@@ -44,7 +44,7 @@ import java.util.Iterator;
 @CommandDef(command = "queue.index", description = "Process queue elements indexing them")
 public class IndexQueueProcessCommand extends QueueProcessCommand {
     @CommandArgument(required = true)
-    public static final FileProperty indexDirKey = new FileProperty("indexdir", "index directory");
+    public static FileProperty indexDirKey = new FileProperty("indexdir", "index directory");
 
     @Override
     public boolean process(final Iterator<BaseType> iter, final String rawValue, final JsonNode args, final Response response, final CommandSession session) throws IOException {

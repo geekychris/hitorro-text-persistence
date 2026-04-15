@@ -53,12 +53,12 @@ public class PhraseUtil {
      */
 
 
-    public static final boolean writePhrasesFromDBIntoResourceCache(String query, String analyzer, boolean generateSortedFile) throws Exception {
+    public static boolean writePhrasesFromDBIntoResourceCache(String query, String analyzer, boolean generateSortedFile) throws Exception {
         // BaseFileResourceCache removed during cleanup - resource cache no longer available
         return false;
     }
 
-    public static final boolean writePhrasesFromDB(BaseFile dir, int bucketSize,
+    public static boolean writePhrasesFromDB(BaseFile dir, int bucketSize,
                                                    int mergeSize, String analyzers,
                                                    String query, boolean createSortedFile) throws Exception {
         BaseFile target = dir.getChild(PhraseUtilBasic.AlphaNumeric);
@@ -77,7 +77,7 @@ public class PhraseUtil {
 
     }
 
-    public static final BaseFile writePhrasesFromDB(BaseFile directory,
+    public static BaseFile writePhrasesFromDB(BaseFile directory,
                                                     String query,
                                                     String analyzer,
                                                     int bucketSize,
@@ -91,7 +91,7 @@ public class PhraseUtil {
         return targetFile;
     }
 
-    public static final BaseFile mergePhraseFiles(BaseFile dir, BaseFile inputFile, int bucketSize, int fileMergeCount, BaseFile outputFile, boolean deleteInputs) throws Exception {
+    public static BaseFile mergePhraseFiles(BaseFile dir, BaseFile inputFile, int bucketSize, int fileMergeCount, BaseFile outputFile, boolean deleteInputs) throws Exception {
         String fileExtension = "phraseFreq";
         PhraseUtilBasic.mergePhraseElementByFrequency(inputFile, dir, fileExtension, fileMergeCount, deleteInputs);
         outputFile.renameTo(outputFile);
@@ -99,7 +99,7 @@ public class PhraseUtil {
     }
 
 
-    public static final boolean dumpHistogram(File inputFile, File outputFile) throws Exception {
+    public static boolean dumpHistogram(File inputFile, File outputFile) throws Exception {
         HTSerializableInputIterator<PhraseElement, DMSSession> iter = new HTSerializableInputIterator<PhraseElement, DMSSession>(inputFile, null, false);
 
         PrintWriter pw = FileUtil.getBufferedPrintWriterFromFile(outputFile);
@@ -126,7 +126,7 @@ public class PhraseUtil {
         return true;
     }
 
-    public static final BaseFile writePhrases(String query,
+    public static BaseFile writePhrases(String query,
                                               BaseFile dir,
                                               String fileExtension,
                                               int phraseDepth,

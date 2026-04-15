@@ -68,8 +68,8 @@ import java.util.List;
  * your doing some kind of non idempodent type work.  If that is the case, ensure you dont process guid's twice.
  */
 public class DocumentIndexer<E extends com.hitorro.util.typesystem.BaseType> implements Sink<E> {
-    public static final StringProperty NameKey = new StringProperty("name", "name of the index", null);
-    public static final FileProperty DirectoryKey = new FileProperty("dir", "name of the index", "");
+    public static StringProperty NameKey = new StringProperty("name", "name of the index", null);
+    public static FileProperty DirectoryKey = new FileProperty("dir", "name of the index", "");
     private static final String OptimizeKey = "optimize.txt";
     private static int counter = 0;
     private File indexDir = null;

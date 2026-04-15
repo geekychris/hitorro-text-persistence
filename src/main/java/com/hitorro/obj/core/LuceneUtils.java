@@ -45,10 +45,10 @@ import java.util.List;
 
 
 public class LuceneUtils {
-    public static final Version CurrentVersion = Version.LUCENE_9_9_2;
+    public static Version CurrentVersion = Version.LUCENE_9_9_2;
 
     // this doesnt work
-    public static final PhraseQuery.Builder getPhraseQuery(String field, String text) throws IOException {
+    public static PhraseQuery.Builder getPhraseQuery(String field, String text) throws IOException {
         GenericAnalyzer m_defaultAnalyzer = new GenericAnalyzer(FilterBits.StandardFilters, Iso639Table.english, GenericAnalyzer.Mode.Index);
         ResetableStringReader m_reader = new ResetableStringReader(null);
         if (StringUtil.nullOrEmptyOrBlankString(text)) {
@@ -69,7 +69,7 @@ public class LuceneUtils {
     }
 
     // basic query
-    public static final BooleanQuery.Builder getQuery(String field, String text, BooleanClause.Occur boolClause) throws IOException {
+    public static BooleanQuery.Builder getQuery(String field, String text, BooleanClause.Occur boolClause) throws IOException {
         GenericAnalyzer m_defaultAnalyzer = new GenericAnalyzer(FilterBits.DefaultFilters, Iso639Table.english, GenericAnalyzer.Mode.Index);
         ResetableStringReader m_reader = new ResetableStringReader(null);
         if (StringUtil.nullOrEmptyOrBlankString(text)) {
@@ -100,7 +100,7 @@ public class LuceneUtils {
      * @param booleanClause
      * @return boolean query
      */
-    public static final BooleanQuery.Builder getBooleanQueryFromTermMatchQuery(TermMatchQuery query, int maxTerms,
+    public static BooleanQuery.Builder getBooleanQueryFromTermMatchQuery(TermMatchQuery query, int maxTerms,
                                                                                List<String> termsUsed, String section,
                                                                                String luceneField,
                                                                                BooleanClause.Occur booleanClause) {
@@ -126,7 +126,7 @@ public class LuceneUtils {
      * @param booleanClause
      * @return
      */
-    public static final BooleanQuery.Builder getBooleanQueryFromTermTupleSet(TermTupleSet<TermTuple> set,
+    public static BooleanQuery.Builder getBooleanQueryFromTermTupleSet(TermTupleSet<TermTuple> set,
                                                                              int maxTerms,
                                                                              List<String> termsUsed,
                                                                              String luceneField,
@@ -151,14 +151,14 @@ public class LuceneUtils {
         return builder;
     }
 
-    public static final Query getStringLiteralQuery(String field, String text, boolean lowerCase) {
+    public static Query getStringLiteralQuery(String field, String text, boolean lowerCase) {
         if (lowerCase) {
             text = text.toLowerCase();
         }
         return new TermQuery(new Term(field, text));
     }
 
-    public static final BooleanQuery.Builder getBooleanQueryFreeText(String field, String text, String contentField, String contentFieldString, BooleanClause.Occur booleanClause) throws IOException {
+    public static BooleanQuery.Builder getBooleanQueryFreeText(String field, String text, String contentField, String contentFieldString, BooleanClause.Occur booleanClause) throws IOException {
         BooleanQuery.Builder builder = new BooleanQuery.Builder();
         GenericAnalyzer m_defaultAnalyzer = new GenericAnalyzer(FilterBits.DefaultFilters, Iso639Table.english, GenericAnalyzer.Mode.Index);
         ResetableStringReader m_reader = new ResetableStringReader(null);
@@ -180,7 +180,7 @@ public class LuceneUtils {
         }
     }
 
-    public static final QueryParser getQueryParser() {
+    public static QueryParser getQueryParser() {
         Analyzer analyzers = AllTypesAnalyzerCache.getCache().get(Iso639Table.english);
         if (analyzers == null) {
             return null;
@@ -194,7 +194,7 @@ public class LuceneUtils {
      * @param builder
      * @param depth
      */
-    public static final void addMaxPostdegree(BooleanQuery.Builder builder, int depth) {
+    public static void addMaxPostdegree(BooleanQuery.Builder builder, int depth) {
         BooleanQuery.Builder b1 = new BooleanQuery.Builder();
         for (int i = 0; i <= depth; i++) {
             b1.add(new TermQuery(new Term(Post.PostDegreeKey, Integer.toString(i))), BooleanClause.Occur.SHOULD);
@@ -208,7 +208,7 @@ public class LuceneUtils {
      * @param builder
      * @param typeNameShort
      */
-    public static final void addTypeMustBeClassOrSubclassOf(BooleanQuery.Builder builder, String typeNameShort, boolean includeSubtype) {
+    public static void addTypeMustBeClassOrSubclassOf(BooleanQuery.Builder builder, String typeNameShort, boolean includeSubtype) {
         if (includeSubtype) {
             builder.add(new TermQuery(new Term(VersionableObject.TypeOrSubtypeKey, typeNameShort)), BooleanClause.Occur.MUST);
         } else {
@@ -222,7 +222,7 @@ public class LuceneUtils {
      * @param builder
      * @param typeNameShort
      */
-    public static final void addMustBeType(BooleanQuery.Builder builder, String typeNameShort) {
+    public static void addMustBeType(BooleanQuery.Builder builder, String typeNameShort) {
         builder.add(new TermQuery(new Term(VersionableObject.TypeKey, typeNameShort)), BooleanClause.Occur.MUST);
     }
 

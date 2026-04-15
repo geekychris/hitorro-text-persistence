@@ -93,10 +93,10 @@ import java.util.function.Function;
         typeManagedClasses = {},
         uiDirectories = {})
 public class BasetextService {
-    public static final StringProperty langProp = new StringProperty("lang", "", "en");
-    public static final BooleanProperty asArrayProp = new BooleanProperty("array", "", true);
-    public static final StringProperty analyzerProp = new StringProperty("", "LOWER,PHONETIC", "en");
-    public static final StringProperty textProp = new StringProperty("text", "", "This is a test");
+    public static StringProperty langProp = new StringProperty("lang", "", "en");
+    public static BooleanProperty asArrayProp = new BooleanProperty("array", "", true);
+    public static StringProperty analyzerProp = new StringProperty("", "LOWER,PHONETIC", "en");
+    public static StringProperty textProp = new StringProperty("text", "", "This is a test");
     /*
 
 
