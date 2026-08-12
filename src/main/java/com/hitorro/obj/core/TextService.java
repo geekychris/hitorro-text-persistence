@@ -69,6 +69,7 @@ import org.apache.pdfbox.io.RandomAccessReadBufferedFile;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.solr.schema.FieldType;
+import com.hitorro.util.basefile.tools.EnvBaseFiles;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -195,7 +196,7 @@ public class TextService {
                                          argType = ArgType.Request) HttpServletRequest req
     ) throws Exception {
         testResolve();
-        BaseFile bf = Env.getBaseFile(new File("/Users/chris/enwiki-20160501-pages-articles-multistream.xml.bz2"));
+        BaseFile bf = EnvBaseFiles.getBaseFile(new File("/Users/chris/enwiki-20160501-pages-articles-multistream.xml.bz2"));
         if (!bf.exists()) {
             return null;
         }
@@ -232,8 +233,8 @@ public class TextService {
                                                argType = ArgType.Request) HttpServletRequest req
     ) throws Exception {
         testResolve();
-        BaseFile bf = Env.getBaseFile(new File("/Users/chris/enwiki-20160501-pages-articles-multistream.xml.bz2"));
-        BaseFile out = Env.getBaseFile(new File("/Users/chris/wiki.json.bz2"));
+        BaseFile bf = EnvBaseFiles.getBaseFile(new File("/Users/chris/enwiki-20160501-pages-articles-multistream.xml.bz2"));
+        BaseFile out = EnvBaseFiles.getBaseFile(new File("/Users/chris/wiki.json.bz2"));
 
         if (!bf.exists()) {
             return null;
@@ -269,13 +270,13 @@ public class TextService {
                                         defaultValue = "",
                                         argType = ArgType.Request) HttpServletRequest req
     ) throws Exception {
-        BaseFile out = Env.getBaseFile(new File("/Users/chris/wiki.json.bz2"));
+        BaseFile out = EnvBaseFiles.getBaseFile(new File("/Users/chris/wiki.json.bz2"));
 
         if (!out.exists()) {
             return null;
         }
 
-        AbstractIterator<com.hitorro.jsontypesystem.JVS> jvsIter = out.getJsonIterator().skipNTakeM(1000, 600, false).map(com.hitorro.jsontypesystem.Json2JVSMapper.me);
+        AbstractIterator<com.hitorro.jsontypesystem.JVS> jvsIter = com.hitorro.util.core.iterator.helpers.BaseFileIterators.getJsonIterator(out).skipNTakeM(1000, 600, false).map(com.hitorro.jsontypesystem.Json2JVSMapper.me);
         SolrDocumentSink sds = new SolrDocumentSink("mydomain", true);
         JVS2SolrMapper jvs2solrMapper = new JVS2SolrMapper();
         AbstractIterator<com.hitorro.jsontypesystem.JVS> indexiter = jvsIter.map(jvs2solrMapper);
@@ -325,7 +326,7 @@ public class TextService {
                                                 argType = ArgType.Request) HttpServletRequest req
     ) {
 
-        /*BaseFile bf = Env.getBaseFile(new File("/Users/chris/000050.000000.json"));
+        /*BaseFile bf = EnvBaseFiles.getBaseFile(new File("/Users/chris/000050.000000.json"));
         AbstractIterator<JVS> iter = BaseFileUtil.bf2jacksonjson.apply(bf).map(Json2JVSMapper.me);
 
 
@@ -363,8 +364,8 @@ public class TextService {
 
     @CommandDef(command = "build", description = "foo")
     public static RedirectHttp foo() throws IOException {
-        BaseFile root = Env.getDataBaseFile().getChild("text/langs");
-        BaseFile out = Env.getDataBaseFile().getChild("text/langid");
+        BaseFile root = EnvBaseFiles.getDataBaseFile().getChild("text/langs");
+        BaseFile out = EnvBaseFiles.getDataBaseFile().getChild("text/langid");
         LanguageId.buildModels(root, out);
         return null;
     }

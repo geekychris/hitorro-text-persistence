@@ -29,6 +29,16 @@
     </repositories>
 
     <dependencies>
+        <dependency>
+            <groupId>com.hitorro</groupId>
+            <artifactId>hitorro-streams</artifactId>
+            <version>3.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.hitorro</groupId>
+            <artifactId>hitorro-basefile</artifactId>
+            <version>3.0.1</version>
+        </dependency>
         <!-- NOTE: These Hitorro dependencies need to be available -->
         <!-- Either as separate projects or replaced with alternatives -->
         

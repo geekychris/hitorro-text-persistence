@@ -74,6 +74,7 @@ import com.hitorro.util.startupframework.phases.ServiceDefinition;
 import com.hitorro.util.xml.StaxXMLBaseChainingIterator;
 import com.hitorro.util.xml.XE;
 import org.apache.solr.schema.FieldType;
+import com.hitorro.util.basefile.tools.EnvBaseFiles;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -108,7 +109,7 @@ public class BasetextService {
     private static com.hitorro.obj.core.BasetextService service;
     @CommandDef(command = "crawl.crawl", description = "host ip address", isInternal = false)
     public static boolean crawl() throws Exception {
-        BaseFile bf = Env.getBaseFile(new File("/Users/chris/crawl"));
+        BaseFile bf = EnvBaseFiles.getBaseFile(new File("/Users/chris/crawl"));
         if (!bf.exists()) {
             bf.mkdir();
         }
@@ -178,7 +179,7 @@ public class BasetextService {
                                          defaultValue = "",
                                          argType = ArgType.Request) HttpServletRequest req
     ) throws Exception {
-        BaseFile bf = Env.getBaseFile(new File("/Users/chris/enwiki-20240201-pages-articles-multistream.xml.bz2"));
+        BaseFile bf = EnvBaseFiles.getBaseFile(new File("/Users/chris/enwiki-20240201-pages-articles-multistream.xml.bz2"));
         if (!bf.exists()) {
             return null;
         }
@@ -215,7 +216,7 @@ public class BasetextService {
                                                   defaultValue = "",
                                                   argType = ArgType.Request) HttpServletRequest req
     ) throws Exception {
-        BaseFile bf = Env.getBaseFile(new File("/Users/chris/enwiki-20160501-pages-articles-multistream.xml.bz2"));
+        BaseFile bf = EnvBaseFiles.getBaseFile(new File("/Users/chris/enwiki-20160501-pages-articles-multistream.xml.bz2"));
         if (!bf.exists()) {
             return null;
         }
@@ -251,7 +252,7 @@ public class BasetextService {
                                             defaultValue = "",
                                             argType = ArgType.Request) HttpServletRequest req
     ) throws Exception {
-        BaseFile bf = Env.getBaseFile(new File("/Users/chris/enwiki-20160501-pages-articles-multistream.xml.bz2"));
+        BaseFile bf = EnvBaseFiles.getBaseFile(new File("/Users/chris/enwiki-20160501-pages-articles-multistream.xml.bz2"));
         if (!bf.exists()) {
 
             return null;
@@ -294,7 +295,7 @@ public class BasetextService {
                                                 defaultValue = "",
                                                 argType = ArgType.Request) HttpServletRequest req
     ) throws Exception {
-        BaseFile bf = Env.getBaseFile(new File("/Users/chris/enwiki-20160501-pages-articles-multistream.xml.bz2"));
+        BaseFile bf = EnvBaseFiles.getBaseFile(new File("/Users/chris/enwiki-20160501-pages-articles-multistream.xml.bz2"));
         if (!bf.exists()) {
             return null;
         }
@@ -331,8 +332,8 @@ public class BasetextService {
                                                    defaultValue = "",
                                                    argType = ArgType.Request) HttpServletRequest req
     ) throws Exception {
-        BaseFile bf = Env.getBaseFile(new File("/Users/chris/enwiki-20160501-pages-articles-multistream.xml.bz2"));
-        BaseFile outBf = Env.getBaseFile(new File("/Users/chris/wikienrichxx.json.bz2"));
+        BaseFile bf = EnvBaseFiles.getBaseFile(new File("/Users/chris/enwiki-20160501-pages-articles-multistream.xml.bz2"));
+        BaseFile outBf = EnvBaseFiles.getBaseFile(new File("/Users/chris/wikienrichxx.json.bz2"));
         JsonSink js = new JsonSink(outBf);
         if (!bf.exists()) {
 
@@ -359,7 +360,7 @@ public class BasetextService {
                                                     @DebugArgAno(argType = ArgType.Uri) String uri,
                                                     @DebugArgAno(argType = ArgType.Request) HttpServletRequest req
     ) throws Exception {
-        BaseFile bf = Env.getBaseFile(new File("/Users/chris/wikienrich.json.bz2"));
+        BaseFile bf = EnvBaseFiles.getBaseFile(new File("/Users/chris/wikienrich.json.bz2"));
         String shardName = "wiki";
         AtomicLong counter = new AtomicLong();
         ObjectStoreShard oss = ObjectStoreService.oss.getShard(shardName);
@@ -378,7 +379,7 @@ public class BasetextService {
                                    @DebugArgAno(argType = ArgType.Uri) String uri,
                                    @DebugArgAno(argType = ArgType.Request) HttpServletRequest req
     ) throws Exception {
-        BaseFile bf = Env.getBaseFile(new File("/Users/chris/wikienrich.json.bz2"));
+        BaseFile bf = EnvBaseFiles.getBaseFile(new File("/Users/chris/wikienrich.json.bz2"));
         String shardName = "wiki";
         AtomicLong counter = new AtomicLong();
 
@@ -401,9 +402,9 @@ public class BasetextService {
                                        @DebugArgAno(argType = ArgType.Uri) String uri,
                                        @DebugArgAno(argType = ArgType.Request) HttpServletRequest req
     ) throws Exception {
-        BaseFile bf = Env.getBaseFile(new File("/Users/chris/sap_saphire.csv"));
-        BaseFile outF = Env.getBaseFile(new File("/Users/chris/out.json"));
-        // BaseFile bf = Env.getBaseFile(new File("/Users/chris/foo.csv"));
+        BaseFile bf = EnvBaseFiles.getBaseFile(new File("/Users/chris/sap_saphire.csv"));
+        BaseFile outF = EnvBaseFiles.getBaseFile(new File("/Users/chris/out.json"));
+        // BaseFile bf = EnvBaseFiles.getBaseFile(new File("/Users/chris/foo.csv"));
         String shardName = "qanda";
         if (bf.exists()) {
             CSVIteratorImpl iter = new CSVIteratorImpl(bf, "UTF-8");
@@ -451,9 +452,9 @@ public class BasetextService {
             @DebugArgAno(keyName = "out",
                     argType = ArgType.JVSResponseSink) Sink<com.hitorro.jsontypesystem.JVS> sink) {
 
-        BaseFile f = Env.getBaseFile(new File("/Users/chris/pics"));
+        BaseFile f = EnvBaseFiles.getBaseFile(new File("/Users/chris/pics"));
         try {
-            AbstractIterator<FileInfo> t = f.list().map(FileInfoMapper.me);
+            AbstractIterator<FileInfo> t = com.hitorro.util.core.iterator.helpers.BaseFileIterators.list(f).map(FileInfoMapper.me);
             t.map(fi -> new com.hitorro.jsontypesystem.JVS(fi.getAsJsonNode())).sink(sink);
         } catch (IOException e) {
             e.printStackTrace();
@@ -477,7 +478,7 @@ public class BasetextService {
                     argType = ArgType.JVSRequestIterator) AbstractIterator<com.hitorro.jsontypesystem.JVS> iter,
             @DebugArgAno(keyName = "out",
                     argType = ArgType.JVSResponseSink) Sink<com.hitorro.jsontypesystem.JVS> sink) throws Exception {
-        BaseFile bf = Env.getBaseFile(new File("/Users/chris/1811-results.json"));
+        BaseFile bf = EnvBaseFiles.getBaseFile(new File("/Users/chris/1811-results.json"));
         JsonNode node = bf.readJsonElement();
         for (JsonNode n : node) {
             JsonNode t = n.get("plainText");
