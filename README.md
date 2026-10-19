@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.png" alt="Hitorro Text Persistence logo" width="180">
+</p>
+
 # Hitorro Text Persistence
 
 This is the **hitorro-text-persistence** project, which provides text processing and indexing capabilities with database persistence integration.
