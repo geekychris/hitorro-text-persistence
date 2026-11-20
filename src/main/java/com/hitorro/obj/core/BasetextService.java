@@ -21,9 +21,9 @@
  */
 package com.hitorro.obj.core;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.JsonNodeFactory;
 import gnu.trove.set.hash.TLongHashSet;
 import com.hitorro.analysis.brat.OpenNLPBratTrainer;
 import com.hitorro.basetext.indexer.IndexerUtil;
@@ -86,6 +86,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Function;
+import com.hitorro.util.json.JsonValues;
 
 @ServiceDefinition(
         shortName = "basetext",
@@ -483,7 +484,7 @@ public class BasetextService {
         for (JsonNode n : node) {
             JsonNode t = n.get("plainText");
             if (t != null) {
-                Console.println(t.asText());
+                Console.println(JsonValues.asText(t));
             }
         }
         return true;

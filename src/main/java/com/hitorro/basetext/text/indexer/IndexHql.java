@@ -22,7 +22,7 @@
 package com.hitorro.basetext.text.indexer;
 
 import com.hitorro.basedms.session.DMSSessionFactory;
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 import com.hitorro.util.commandandcontrol.Command;
 import com.hitorro.util.commandandcontrol.CommandSession;
 import com.hitorro.util.commandandcontrol.Response;

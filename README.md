@@ -56,9 +56,9 @@ mvn clean install
 ## Dependencies
 
 ### Hitorro Dependencies (Required)
-- **hitorro-text-core 3.0.0**: Core text processing functionality
-- **hitorro-basedms 3.0.0**: Database persistence layer
-- **hitorro-objretrieval 3.0.0**: Solr and object retrieval
+- **hitorro-text-core 4.0.0**: Core text processing functionality
+- **hitorro-basedms 4.0.0**: Database persistence layer
+- **hitorro-objretrieval 4.0.0**: Solr and object retrieval
 
 ### External Dependencies
 - **Apache Commons IO 2.15.1**: File and stream utilities
