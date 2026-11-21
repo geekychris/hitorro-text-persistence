@@ -21,9 +21,9 @@
  */
 package com.hitorro.basetext.indexer;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ArrayNode;
+import tools.jackson.databind.node.JsonNodeFactory;
 import com.hitorro.language.Iso639Table;
 import com.hitorro.language.IsoLanguage;
 import com.hitorro.obj.core.GenericAnalyzer;
@@ -151,7 +151,7 @@ public class IndexerUtil {
             ArrayNode an = JsonNodeFactory.instance.arrayNode();
             while (ts.incrementToken()) {
                 String term = termAttribute.toString();
-                an.add(JsonNodeFactory.instance.textNode(term));
+                an.add(JsonNodeFactory.instance.stringNode(term));
             }
             ts.close();
             return an;
@@ -165,7 +165,7 @@ public class IndexerUtil {
             sb.append(term);
         }
         ts.close();
-        return JsonNodeFactory.instance.textNode(sb.toString());
+        return JsonNodeFactory.instance.stringNode(sb.toString());
     }
 
     public static void indexFieldFromTypeField(List<IndexableField> addMe,

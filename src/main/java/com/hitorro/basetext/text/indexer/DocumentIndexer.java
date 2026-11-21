@@ -21,7 +21,7 @@
  */
 package com.hitorro.basetext.text.indexer;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 import com.hitorro.base.typesystem.GuidBaseType;
 import com.hitorro.basedms.session.DMSSessionFactory;
 import com.hitorro.basetext.indexer.Log;

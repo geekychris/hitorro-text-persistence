@@ -24,7 +24,7 @@ package com.hitorro.basetext.commands;
 import com.hitorro.basetext.indexer.AllTypesAnalyzerCache;
 import com.hitorro.basetext.indexer.IndexerFieldAdapter;
 import com.hitorro.basetext.indexer.SearcherCache;
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 import com.hitorro.language.Iso639Table;
 import com.hitorro.util.commandandcontrol.Command;
 import com.hitorro.util.commandandcontrol.CommandSession;

@@ -23,7 +23,7 @@ package com.hitorro.basetext.commands;
 
 import com.hitorro.base.docprocessing.commands.QueueProcessCommand;
 import com.hitorro.basetext.text.indexer.DocumentIndexer;
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 import com.hitorro.util.commandandcontrol.CommandSession;
 import com.hitorro.util.commandandcontrol.Response;
 import com.hitorro.util.commandandcontrol.ano.CommandArgument;

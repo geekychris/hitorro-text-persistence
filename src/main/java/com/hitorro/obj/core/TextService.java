@@ -21,7 +21,7 @@
  */
 package com.hitorro.obj.core;
 
-import com.fasterxml.jackson.databind.JsonNode;
+import tools.jackson.databind.JsonNode;
 import com.hitorro.basetext.commands.FetchPageCommand;
 import com.hitorro.basetext.dfindex.DumpDF;
 import com.hitorro.basetext.inverter.TermTuple;
